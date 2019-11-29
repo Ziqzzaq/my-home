@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Firebase from "./firebase";
+import {Button} from "@material-ui/core";
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+    const firebaseService: Firebase = new Firebase();
+
+
+    return (
+        <div className="App">
+            <Button variant="contained" color="primary" onClick={() => {
+                firebaseService.setUsers().then(() => {});
+            }}>
+                Set users
+            </Button>
+
+            <Button variant="contained" color="primary" onClick={() => {
+                firebaseService.getUsers();
+            }}>
+                Get users
+            </Button>
+        </div>
+    );
+};
 
 export default App;
